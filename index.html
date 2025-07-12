@@ -1,0 +1,193 @@
+# Controle-de-estoque
+Sistema de controle de estoque
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Controle de Estoque Hyago</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+    }
+    h2, h3 {
+      color: #333;
+    }
+    input, select, button {
+      width: 100%;
+      padding: 8px;
+      margin: 6px 0;
+      box-sizing: border-box;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #aaa;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f0f0f0;
+    }
+    .entrada { color: green; }
+    .saida { color: red; }
+    .alerta {
+      background-color: #fff3cd;
+      border-left: 6px solid #ff9900;
+      padding: 10px;
+      margin-top: 20px;
+    }
+    .estoque-baixo {
+      color: red;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h2>Controle de Estoque - Hyago</h2>
+
+  <label>Material:</label>
+  <select id="material">
+    <option disabled selected>Selecione</option>
+    <option>CABO FLEXIVEL 2,5 MM AZUL</option>
+    <option>CABO FLEXIVEL 2,5 MM VERMELHO</option>
+    <option>CABO FLEXIVEL 2,5 MM PRETO</option>
+    <option>CABO FLEXIVEL 2,5 MM VERDE</option>
+    <option>CABO FLEXIVEL 2,5 MM BRANCO</option>
+    <option>CABO FLEXIVEL 2,5 MM CINZA</option>
+    <option>CABO FLEXIVEL 2,5 MM AMARELO</option>
+    <option>CABO FLEXIVEL 35 MM VERMELHO</option>
+    <option>CABO FLEXIVEL 35 MM PRETO</option>
+    <option>CABO FLEXIVEL 16 MM VERMELHO</option>
+    <option>CABO FLEXIVEL 16 MM PRETO</option>
+    <option>CABO FLEXIVEL 6 MM VERMELHO</option>
+    <option>CABO FLEXIVEL 6 MM PRETO</option>
+    <option>CABO FLEXIVEL 1,5 MM VERMELHO</option>
+    <option>CABO FLEXIVEL 1,5 MM PRETO</option>
+  </select>
+
+  <label>Tipo:</label>
+  <select id="tipo">
+    <option value="entrada">Entrada</option>
+    <option value="saida">Saída</option>
+  </select>
+
+  <label>Quantidade:</label>
+  <input type="number" id="quantidade" min="1">
+
+  <label>Estoque Mínimo Desejado:</label>
+  <input type="number" id="minimo" min="0" placeholder="Ex: 10 (opcional)">
+
+  <button onclick="registrar()">Registrar</button>
+
+  <div id="alertaReposicao"></div>
+
+  <h3>Saldo Atual por Material</h3>
+  <table id="tabelaSaldo">
+    <thead>
+      <tr><th>Material</th><th>Saldo</th><th>Mínimo</th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <h3>Histórico de Movimentações</h3>
+  <table id="tabelaHistorico">
+    <thead>
+      <tr>
+        <th>Data</th>
+        <th>Material</th>
+        <th>Tipo</th>
+        <th>Quantidade</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    let historico = JSON.parse(localStorage.getItem('estoqueHistorico') || '[]');
+    let saldos = JSON.parse(localStorage.getItem('estoqueSaldos') || '{}');
+    let minimos = JSON.parse(localStorage.getItem('estoqueMinimos') || '{}');
+
+    function registrar() {
+      const material = document.getElementById('material').value;
+      const tipo = document.getElementById('tipo').value;
+      const quantidade = parseInt(document.getElementById('quantidade').value);
+      const minimo = document.getElementById('minimo').value;
+      const data = new Date().toLocaleString();
+
+      if (!material || isNaN(quantidade)) {
+        alert('Preencha todos os campos obrigatórios.');
+        return;
+      }
+
+      if (minimo !== '') {
+        minimos[material] = parseInt(minimo);
+      }
+
+      if (!saldos[material]) saldos[material] = 0;
+      saldos[material] += (tipo === 'entrada') ? quantidade : -quantidade;
+
+      historico.push({ data, material, tipo, quantidade });
+
+      localStorage.setItem('estoqueHistorico', JSON.stringify(historico));
+      localStorage.setItem('estoqueSaldos', JSON.stringify(saldos));
+      localStorage.setItem('estoqueMinimos', JSON.stringify(minimos));
+
+      atualizarTabelas();
+      limparCampos();
+    }
+
+    function atualizarTabelas() {
+      const tabelaHist = document.querySelector('#tabelaHistorico tbody');
+      tabelaHist.innerHTML = '';
+      historico.slice().reverse().forEach(item => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${item.data}</td>
+          <td>${item.material}</td>
+          <td class="${item.tipo === 'entrada' ? 'entrada' : 'saida'}">${item.tipo}</td>
+          <td>${item.quantidade}</td>
+        `;
+        tabelaHist.appendChild(tr);
+      });
+
+      const tabelaSaldo = document.querySelector('#tabelaSaldo tbody');
+      tabelaSaldo.innerHTML = '';
+      const alertaDiv = document.getElementById('alertaReposicao');
+      alertaDiv.innerHTML = '';
+      for (const material in saldos) {
+        const saldo = saldos[material];
+        const minimo = minimos[material] ?? '-';
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${material}</td>
+          <td class="${saldo <= (minimos[material] || 0) ? 'estoque-baixo' : ''}">${saldo}</td>
+          <td>${minimo}</td>
+        `;
+        tabelaSaldo.appendChild(tr);
+
+        if (minimos[material] !== undefined && saldo < minimos[material]) {
+          const alerta = document.createElement('div');
+          alerta.className = 'alerta';
+          alerta.textContent = `⚠ Atenção! O material "${material}" está abaixo do estoque mínimo. É necessário repor.`;
+          alertaDiv.appendChild(alerta);
+        }
+      }
+    }
+
+    function limparCampos() {
+      document.getElementById('material').value = '';
+      document.getElementById('quantidade').value = '';
+      document.getElementById('minimo').value = '';
+      document.getElementById('tipo').value = 'entrada';
+    }
+
+    atualizarTabelas();
+  </script>
+</body>
+</html>
