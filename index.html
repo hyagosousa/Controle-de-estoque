@@ -70,13 +70,16 @@
   </select>
 
   <label>Tipo:</label>
-  <select id="tipo">
+  <select id="tipo" onchange="mostrarResponsavel()">
     <option value="entrada">Entrada</option>
     <option value="saida">Saída</option>
   </select>
 
   <label>Quantidade:</label>
   <input type="number" id="quantidade" min="1" placeholder="Digite a quantidade em metros">
+
+  <label id="labelResponsavel">Quem recebeu:</label>
+  <input type="text" id="responsavel" placeholder="Digite o nome">
 
   <label>Estoque Mínimo Desejado:</label>
   <input type="number" id="minimo" min="0" placeholder="Ex: 50 (opcional)">
@@ -101,6 +104,7 @@
         <th>Material</th>
         <th>Tipo</th>
         <th>Quantidade (m)</th>
+        <th>Responsável</th>
       </tr>
     </thead>
     <tbody></tbody>
@@ -111,14 +115,21 @@
     let saldos = JSON.parse(localStorage.getItem('estoqueSaldos') || '{}');
     let minimos = JSON.parse(localStorage.getItem('estoqueMinimos') || '{}');
 
+    function mostrarResponsavel() {
+      const tipo = document.getElementById('tipo').value;
+      const label = document.getElementById('labelResponsavel');
+      label.textContent = tipo === 'entrada' ? 'Quem recebeu:' : 'Quem retirou:';
+    }
+
     function registrar() {
       const material = document.getElementById('material').value;
       const tipo = document.getElementById('tipo').value;
       const quantidade = parseInt(document.getElementById('quantidade').value);
+      const responsavel = document.getElementById('responsavel').value.trim();
       const minimo = document.getElementById('minimo').value;
       const data = new Date().toLocaleString();
 
-      if (!material || isNaN(quantidade)) {
+      if (!material || isNaN(quantidade) || !responsavel) {
         alert('Preencha todos os campos obrigatórios.');
         return;
       }
@@ -130,7 +141,7 @@
       if (!saldos[material]) saldos[material] = 0;
       saldos[material] += (tipo === 'entrada') ? quantidade : -quantidade;
 
-      historico.push({ data, material, tipo, quantidade });
+      historico.push({ data, material, tipo, quantidade, responsavel });
 
       localStorage.setItem('estoqueHistorico', JSON.stringify(historico));
       localStorage.setItem('estoqueSaldos', JSON.stringify(saldos));
@@ -150,6 +161,7 @@
           <td>${item.material}</td>
           <td class="${item.tipo === 'entrada' ? 'entrada' : 'saida'}">${item.tipo}</td>
           <td>${item.quantidade}</td>
+          <td>${item.responsavel}</td>
         `;
         tabelaHist.appendChild(tr);
       });
@@ -182,11 +194,15 @@
       document.getElementById('material').value = '';
       document.getElementById('quantidade').value = '';
       document.getElementById('minimo').value = '';
+      document.getElementById('responsavel').value = '';
       document.getElementById('tipo').value = 'entrada';
+      mostrarResponsavel();
     }
 
+    mostrarResponsavel();
     atualizarTabelas();
   </script>
 </body>
 </html>
+
 
