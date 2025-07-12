@@ -1,5 +1,3 @@
-# Controle-de-estoque
-Sistema de controle de estoque
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -54,21 +52,21 @@ Sistema de controle de estoque
   <label>Material:</label>
   <select id="material">
     <option disabled selected>Selecione</option>
-    <option>CABO FLEXIVEL 2,5 MM AZUL</option>
-    <option>CABO FLEXIVEL 2,5 MM VERMELHO</option>
-    <option>CABO FLEXIVEL 2,5 MM PRETO</option>
-    <option>CABO FLEXIVEL 2,5 MM VERDE</option>
-    <option>CABO FLEXIVEL 2,5 MM BRANCO</option>
-    <option>CABO FLEXIVEL 2,5 MM CINZA</option>
-    <option>CABO FLEXIVEL 2,5 MM AMARELO</option>
-    <option>CABO FLEXIVEL 35 MM VERMELHO</option>
-    <option>CABO FLEXIVEL 35 MM PRETO</option>
-    <option>CABO FLEXIVEL 16 MM VERMELHO</option>
-    <option>CABO FLEXIVEL 16 MM PRETO</option>
-    <option>CABO FLEXIVEL 6 MM VERMELHO</option>
-    <option>CABO FLEXIVEL 6 MM PRETO</option>
-    <option>CABO FLEXIVEL 1,5 MM VERMELHO</option>
-    <option>CABO FLEXIVEL 1,5 MM PRETO</option>
+    <option>CABO FLEXÍVEL 2,5 mm² AZUL (metros)</option>
+    <option>CABO FLEXÍVEL 2,5 mm² VERMELHO (metros)</option>
+    <option>CABO FLEXÍVEL 2,5 mm² PRETO (metros)</option>
+    <option>CABO FLEXÍVEL 2,5 mm² VERDE (metros)</option>
+    <option>CABO FLEXÍVEL 2,5 mm² BRANCO (metros)</option>
+    <option>CABO FLEXÍVEL 2,5 mm² CINZA (metros)</option>
+    <option>CABO FLEXÍVEL 2,5 mm² AMARELO (metros)</option>
+    <option>CABO FLEXÍVEL 35 mm² VERMELHO (metros)</option>
+    <option>CABO FLEXÍVEL 35 mm² PRETO (metros)</option>
+    <option>CABO FLEXÍVEL 16 mm² VERMELHO (metros)</option>
+    <option>CABO FLEXÍVEL 16 mm² PRETO (metros)</option>
+    <option>CABO FLEXÍVEL 6 mm² VERMELHO (metros)</option>
+    <option>CABO FLEXÍVEL 6 mm² PRETO (metros)</option>
+    <option>CABO FLEXÍVEL 1,5 mm² VERMELHO (metros)</option>
+    <option>CABO FLEXÍVEL 1,5 mm² PRETO (metros)</option>
   </select>
 
   <label>Tipo:</label>
@@ -78,10 +76,10 @@ Sistema de controle de estoque
   </select>
 
   <label>Quantidade:</label>
-  <input type="number" id="quantidade" min="1">
+  <input type="number" id="quantidade" min="1" placeholder="Digite a quantidade em metros">
 
   <label>Estoque Mínimo Desejado:</label>
-  <input type="number" id="minimo" min="0" placeholder="Ex: 10 (opcional)">
+  <input type="number" id="minimo" min="0" placeholder="Ex: 50 (opcional)">
 
   <button onclick="registrar()">Registrar</button>
 
@@ -90,7 +88,7 @@ Sistema de controle de estoque
   <h3>Saldo Atual por Material</h3>
   <table id="tabelaSaldo">
     <thead>
-      <tr><th>Material</th><th>Saldo</th><th>Mínimo</th></tr>
+      <tr><th>Material</th><th>Saldo (m)</th><th>Mínimo (m)</th></tr>
     </thead>
     <tbody></tbody>
   </table>
@@ -102,7 +100,7 @@ Sistema de controle de estoque
         <th>Data</th>
         <th>Material</th>
         <th>Tipo</th>
-        <th>Quantidade</th>
+        <th>Quantidade (m)</th>
       </tr>
     </thead>
     <tbody></tbody>
@@ -191,3 +189,4 @@ Sistema de controle de estoque
   </script>
 </body>
 </html>
+
