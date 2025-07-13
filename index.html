@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>Controle de Estoque Hyago</title>
+    <button onclick="limparRelatorioComSenha()">🧹 Limpar Relatório (senha)</button>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <style>
     body {
@@ -434,6 +435,24 @@
     mostrarResponsavel();
     atualizarTabelas();
   </script>
+  <script>
+  const senhaLimpar = "Estoqueglobe";
+  function limparRelatorioComSenha() {
+    const senha = prompt("Digite a senha para limpar o relatório:");
+    if (senha === senhaLimpar) {
+      if (confirm("Tem certeza que deseja apagar TODO o histórico e os saldos?")) {
+        localStorage.removeItem('estoqueHistorico');
+        localStorage.removeItem('estoqueSaldos');
+        localStorage.removeItem('estoqueMinimos');
+        localStorage.removeItem('estoqueUnidades');
+        location.reload();
+      }
+    } else {
+      alert("Senha incorreta. Ação cancelada.");
+    }
+  }
+</script>
+
 </body>
 </html>
 
