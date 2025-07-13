@@ -436,7 +436,9 @@
     atualizarTabelas();
   </script>
   <script>
+ <script>
   const senhaLimpar = "Estoqueglobe";
+
   function limparRelatorioComSenha() {
     const senha = prompt("Digite a senha para limpar o relatório:");
     if (senha === senhaLimpar) {
@@ -445,6 +447,7 @@
         localStorage.removeItem('estoqueSaldos');
         localStorage.removeItem('estoqueMinimos');
         localStorage.removeItem('estoqueUnidades');
+        alert("Histórico e saldos apagados com sucesso.");
         location.reload();
       }
     } else {
