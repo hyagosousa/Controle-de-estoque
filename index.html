@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Controle de Estoque Hyago</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <style>
@@ -92,7 +92,91 @@
 
   <label for="material">Material:</label>
   <input list="listaMateriais" id="material" placeholder="Digite ou selecione um material" autocomplete="off" />
-  <datalist id="listaMateriais"></datalist>
+  <datalist id="listaMateriais">
+    <!-- Materiais por metro -->
+    <option value="TRILHO DIN P/DISJUNTORES" data-unidade="m"></option>
+    <option value="CANALETA RECORTE SEMI ABERTO 50X50" data-unidade="m"></option>
+    <option value="CANALETA RECORTE SEMI ABERTO 80X80" data-unidade="m"></option>
+    <option value="CABO FLEXIVEL 1,5 MM VERMELHO" data-unidade="m"></option>
+    <option value="CABO FLEXIVEL 1,5 MM PRETO" data-unidade="m"></option>
+    <option value="CABO FLEXIVEL 2,5 MM AZUL" data-unidade="m"></option>
+    <option value="CABO FLEXIVEL 2,5 MM VERMELHO" data-unidade="m"></option>
+    <option value="CABO FLEXIVEL 2,5 MM PRETO" data-unidade="m"></option>
+    <option value="CABO FLEXIVEL 2,5 MM VERDE" data-unidade="m"></option>
+    <option value="CABO FLEXIVEL 2,5 MM BRANCO" data-unidade="m"></option>
+    <option value="CABO FLEXIVEL 2,5 MM CINZA" data-unidade="m"></option>
+    <option value="CABO FLEXIVEL 2,5 MM AMARELO" data-unidade="m"></option>
+    <option value="CABO FLEXIVEL 6 MM VERMELHO" data-unidade="m"></option>
+    <option value="CABO FLEXIVEL 6 MM PRETO" data-unidade="m"></option>
+    <option value="CABO FLEXIVEL 16 MM VERMELHO" data-unidade="m"></option>
+    <option value="CABO FLEXIVEL 16 MM PRETO" data-unidade="m"></option>
+    <option value="CABO FLEXIVEL 35 MM VERMELHO" data-unidade="m"></option>
+    <option value="CABO FLEXIVEL 35 MM PRETO" data-unidade="m"></option>
+    <option value="CABO FLEXIVEL 50 MM AZUL" data-unidade="m"></option>
+    <option value="CABO FLEXIVEL 50 MM PRETO" data-unidade="m"></option>
+    <option value="CABO FLEXIVEL 50 MM VERMELHO" data-unidade="m"></option>
+    <option value="CABO FLEXIVEL 70 MM PRETO" data-unidade="m"></option>
+    <option value="CABO FLEXIVEL 70 MM AZUL" data-unidade="m"></option>
+    <option value="CABO FLEXIVEL 70 MM VERMELHO" data-unidade="m"></option>
+    <option value="CABO PP 0,75 MM" data-unidade="m"></option>
+    <option value="CABO PP 3X2,5 MM" data-unidade="m"></option>
+    <option value="CABO PP 4X1 MM" data-unidade="m"></option>
+    <option value="CABO PP 3X4 MM" data-unidade="m"></option>
+
+    <!-- Materiais por unidade -->
+    <option value="QUADRO DE DISTRIBUIÇÃO" data-unidade="un"></option>
+    <option value="CAIXA DE PASSAGEM PLÁSTICA CINZA P" data-unidade="un"></option>
+    <option value="CAIXA DE PASSAGEM CINZA P" data-unidade="un"></option>
+    <option value="FUSÍVEL AUTOMOTIVO DE 10A" data-unidade="un"></option>
+    <option value="FUSÍVEL AUTOMOTIVO DE 15A" data-unidade="un"></option>
+    <option value="FUSÍVEL AUTOMOTIVO DE 20A" data-unidade="un"></option>
+    <option value="FUSÍVEL AUTOMOTIVO DE 25A" data-unidade="un"></option>
+    <option value="FUSÍVEL AUTOMOTIVO DE 40A" data-unidade="un"></option>
+    <option value="FUSÍVEL AUTOMOTIVO 60A" data-unidade="un"></option>
+    <option value="FUSÍVEL AUTOMOTIVO 80A" data-unidade="un"></option>
+    <option value="FUSIVEL AUTOMOTIVO 100A" data-unidade="un"></option>
+    <option value="FUSÍVEL AUTOMOTIVO 150A" data-unidade="un"></option>
+    <option value="FUSÍVEL AUTOMOTIVO 250A" data-unidade="un"></option>
+    <option value="DISJUNTOR CA BIPOLAR 06A" data-unidade="un"></option>
+    <option value="DISJUNTOR CA BIPOLAR 20A" data-unidade="un"></option>
+    <option value="DISJUNTOR CC BIPOLAR 25A" data-unidade="un"></option>
+    <option value="DR 06 MA" data-unidade="un"></option>
+    <option value="RELÉ SOB SUB TENSÃO P/INVERSOR" data-unidade="un"></option>
+    <option value="RELÉ SOB SUB TENSÃO P/ENERGIA EXTERNA" data-unidade="un"></option>
+    <option value="CHAVE DE TRANSFERÊNCIA AUTOMÁTICA" data-unidade="un"></option>
+    <option value="CONECTOR WAGO P" data-unidade="un"></option>
+    <option value="CONECTOR WAGO G" data-unidade="un"></option>
+    <option value="CONECTOR ILHÓS 2,5 MM" data-unidade="un"></option>
+    <option value="CONECTOR ILHÓS 1 MM" data-unidade="un"></option>
+    <option value="CONECTOR ILHÓS 6 MM" data-unidade="un"></option>
+    <option value="CONECTOR OLHAL 16 MM" data-unidade="un"></option>
+    <option value="CONECTOR OLHAL 25 MM" data-unidade="un"></option>
+    <option value="CONECTOR OLHAL 35 MM" data-unidade="un"></option>
+    <option value="CONECTOR OLHAL 50 MM" data-unidade="un"></option>
+    <option value="CONECTOR OLHAL 70 MM" data-unidade="un"></option>
+    <option value="INVERSOR ECOWORD 2000W 12V" data-unidade="un"></option>
+    <option value="INVERSOR EPEVER 1500W 12V" data-unidade="un"></option>
+    <option value="INVERSOR EPEVER 3000W 12V" data-unidade="un"></option>
+    <option value="INVERSOR ECOWORD 2000W 24V" data-unidade="un"></option>
+    <option value="INVERSOR EPEVER 1500W 24V" data-unidade="un"></option>
+    <option value="INVERSOR EPEVER 3000W 24V" data-unidade="un"></option>
+    <option value="PLACA SOLAR 410W" data-unidade="un"></option>
+    <option value="GERÊNCIADOR DE BATERIAS VICTRON ORION 12/12 30A" data-unidade="un"></option>
+    <option value="CONTROLADOR SOLAR EPEVER MPPT 40A" data-unidade="un"></option>
+    <option value="CONTROLADOR SOLAR EPEVER MPPT 30A" data-unidade="un"></option>
+    <option value="CARREGADOR USINA 12V 70A" data-unidade="un"></option>
+    <option value="CARREGADOR USINA 12V 90A" data-unidade="un"></option>
+    <option value="CARREGADOR USINA 12V 100A" data-unidade="un"></option>
+    <option value="CARREGADOR USINA 12V 120A" data-unidade="un"></option>
+    <option value="CARREGADOR USINA 24V 90A" data-unidade="un"></option>
+    <option value="CARREGADOR USINA 24V 70A" data-unidade="un"></option>
+    <option value="CARREGADOR USINA 24V 100A" data-unidade="un"></option>
+    <option value="CARREGADOR USINA 24V 120A" data-unidade="un"></option>
+    <option value="PLACA DE SLIDE-OUT" data-unidade="un"></option>
+    <option value="CONTROLADOR MPPT VICTRON" data-unidade="un"></option>
+    <option value="GERÊNCIADOR DE BATERIAS VICTRON ORION 12/12 30A" data-unidade="un"></option>
+    <option value="INVERSOR MULTIPLUS 12V 2000VA" data-unidade="un"></option>
+  </datalist>
 
   <label for="tipo">Tipo:</label>
   <select id="tipo" onchange="mostrarResponsavel()">
@@ -151,8 +235,8 @@
   </div>
 
   <script>
+    // Objeto para mapear unidades pelo nome do material
     const materiaisUnidades = {
-      // Materiais por metro
       "TRILHO DIN P/DISJUNTORES": "m",
       "CANALETA RECORTE SEMI ABERTO 50X50": "m",
       "CANALETA RECORTE SEMI ABERTO 80X80": "m",
@@ -181,7 +265,6 @@
       "CABO PP 3X2,5 MM": "m",
       "CABO PP 4X1 MM": "m",
       "CABO PP 3X4 MM": "m",
-      // Materiais por unidade
       "QUADRO DE DISTRIBUIÇÃO": "un",
       "CAIXA DE PASSAGEM PLÁSTICA CINZA P": "un",
       "CAIXA DE PASSAGEM CINZA P": "un",
@@ -232,21 +315,15 @@
       "CARREGADOR USINA 24V 120A": "un",
       "PLACA DE SLIDE-OUT": "un",
       "CONTROLADOR MPPT VICTRON": "un",
-      "GERÊNCIADOR DE BATERIAS VICTRON ORION 12/12 30A": "un",
       "INVERSOR MULTIPLUS 12V 2000VA": "un"
     };
 
-    const datalist = document.getElementById("listaMateriais");
-    Object.keys(materiaisUnidades).forEach(material => {
-      const option = document.createElement("option");
-      option.value = material;
-      datalist.appendChild(option);
-    });
-
+    // Carrega dados do localStorage
     let historico = JSON.parse(localStorage.getItem('estoqueHistorico') || '[]');
     let saldos = JSON.parse(localStorage.getItem('estoqueSaldos') || '{}');
     let minimos = JSON.parse(localStorage.getItem('estoqueMinimos') || '{}');
 
+    // Exibe os campos de responsável conforme tipo
     function mostrarResponsavel() {
       const tipo = document.getElementById('tipo').value;
       document.getElementById('labelEntrada').style.display = tipo === 'entrada' ? 'block' : 'none';
@@ -255,12 +332,14 @@
       document.getElementById('responsavelSaida').style.display = tipo === 'saida' ? 'block' : 'none';
     }
 
+    // Registrar entrada ou saída no histórico e atualizar saldos
     function registrar() {
-      const material = document.getElementById('material').value.trim();
-      if (!material || !materiaisUnidades.hasOwnProperty(material)) {
+      const materialInput = document.getElementById('material').value.trim();
+      if (!materialInput || !materiaisUnidades.hasOwnProperty(materialInput)) {
         alert('Selecione um material válido.');
         return;
       }
+      const material = materialInput;
       const tipo = document.getElementById('tipo').value;
       const quantidade = parseInt(document.getElementById('quantidade').value);
       if (isNaN(quantidade) || quantidade <= 0) {
@@ -277,8 +356,10 @@
       if (minimoInput !== '') {
         minimos[material] = parseInt(minimoInput);
       }
-      if (!saldos.hasOwnProperty(material)) saldos[material] = 0;
+      const unidade = materiaisUnidades[material] || 'un';
+      if (!saldos[material]) saldos[material] = 0;
       saldos[material] += (tipo === 'entrada' ? quantidade : -quantidade);
+      if (saldos[material] < 0) saldos[material] = 0; // evitar saldo negativo
       const dataHora = new Date().toLocaleString();
       historico.push({
         dataHora,
@@ -287,8 +368,9 @@
         quantidade,
         responsavelEntrada: tipo === 'entrada' ? responsavelEntrada : '',
         responsavelSaida: tipo === 'saida' ? responsavelSaida : '',
-        unidade: materiaisUnidades[material]
+        unidade
       });
+      // Salvar no localStorage
       localStorage.setItem('estoqueHistorico', JSON.stringify(historico));
       localStorage.setItem('estoqueSaldos', JSON.stringify(saldos));
       localStorage.setItem('estoqueMinimos', JSON.stringify(minimos));
@@ -296,7 +378,9 @@
       limparCampos();
     }
 
+    // Atualiza as tabelas e alerta de estoque baixo
     function atualizarTabelas() {
+      // Histórico
       const tbodyHist = document.querySelector('#tabelaHistorico tbody');
       tbodyHist.innerHTML = '';
       historico.slice().reverse().forEach(item => {
@@ -312,6 +396,7 @@
         tbodyHist.appendChild(tr);
       });
 
+      // Saldos
       const tbodySaldo = document.querySelector('#tabelaSaldo tbody');
       tbodySaldo.innerHTML = '';
       const alertaDiv = document.getElementById('alertaReposicao');
@@ -335,6 +420,7 @@
       }
     }
 
+    // Limpa os campos do formulário
     function limparCampos() {
       document.getElementById('material').value = '';
       document.getElementById('quantidade').value = '';
@@ -344,25 +430,31 @@
       mostrarResponsavel();
     }
 
+    // Gera o texto do relatório com o histórico
     function gerarRelatorio() {
-      if (historico.length === 0) {
-        alert('Não há movimentações para gerar relatório.');
-        return;
-      }
       let texto = 'Relatório de Movimentações - Controle de Estoque\n\n';
       historico.forEach(item => {
-        texto += `Data/Hora: ${item.dataHora}\nMaterial: ${item.material}\nTipo: ${item.tipo}\nQuantidade: ${item.quantidade} ${item.unidade}\nResponsável Entrada: ${item.responsavelEntrada || '-'}\nResponsável Saída: ${item.responsavelSaida || '-'}\n----------------------------------------\n`;
+        texto += 
+          `Data/Hora: ${item.dataHora}\n` +
+          `Material: ${item.material}\n` +
+          `Tipo: ${item.tipo}\n` +
+          `Quantidade: ${item.quantidade} ${item.unidade}\n` +
+          `Responsável Entrada: ${item.responsavelEntrada || '-'}\n` +
+          `Responsável Saída: ${item.responsavelSaida || '-'}\n` +
+          '----------------------------------------\n';
       });
       document.getElementById('textoRelatorio').value = texto;
       document.getElementById('overlay').style.display = 'block';
       document.getElementById('relatorioModal').style.display = 'block';
     }
 
+    // Fecha o modal do relatório
     function fecharRelatorio() {
       document.getElementById('overlay').style.display = 'none';
       document.getElementById('relatorioModal').style.display = 'none';
     }
 
+    // Copia o relatório para a área de transferência
     function copiarRelatorio() {
       const texto = document.getElementById('textoRelatorio');
       texto.select();
@@ -371,12 +463,14 @@
       alert('Relatório copiado para a área de transferência!');
     }
 
+    // Envia o relatório via WhatsApp
     function enviarWhatsApp() {
       const texto = encodeURIComponent(document.getElementById('textoRelatorio').value);
       const url = `https://api.whatsapp.com/send?text=${texto}`;
       window.open(url, '_blank');
     }
 
+    // Baixa o relatório em PDF
     function baixarPDF() {
       const { jsPDF } = window.jspdf;
       const doc = new jsPDF();
@@ -387,6 +481,7 @@
       doc.save('relatorio_estoque.pdf');
     }
 
+    // Limpa todo o histórico e saldos, protegendo com senha
     function limparRelatorioComSenha() {
       const senha = prompt("Digite a senha para limpar o relatório:");
       if (senha === "Estoqueglobe") {
@@ -402,10 +497,10 @@
       }
     }
 
+    // Inicializa tela e eventos
     mostrarResponsavel();
     atualizarTabelas();
   </script>
 </body>
 </html>
-
 
