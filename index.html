@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -89,56 +88,26 @@
 </head>
 <body>
   <h2>Controle de Estoque - Hyago</h2>
-
   <button onclick="limparRelatorioComSenha()">🧹 Limpar Relatório (senha)</button>
-
   <label for="material">Material:</label>
   <input list="listaMateriais" id="material" placeholder="Digite ou selecione um material" />
-  <datalist id="listaMateriais">
-    <option value="TRILHO DIN P/DISJUNTORES">
-    <option value="CANALETA RECORTE SEMI ABERTO 50X50">
-    <option value="CABO FLEXIVEL 1,5 MM VERMELHO">
-    <option value="CABO FLEXIVEL 2,5 MM AZUL">
-    <option value="CABO FLEXIVEL 6 MM VERMELHO">
-    <option value="CABO FLEXIVEL 16 MM PRETO">
-    <option value="CABO FLEXIVEL 70 MM VERMELHO">
-    <option value="CABO PP 3X2,5 MM">
-    <option value="QUADRO DE DISTRIBUIÇÃO">
-    <option value="FUSÍVEL AUTOMOTIVO DE 10A">
-    <option value="DISJUNTOR CA BIPOLAR 06A">
-    <option value="DR 06 MA">
-    <option value="RELÉ SOB SUB TENSÃO P/INVERSOR">
-    <option value="PLACA SOLAR 410W">
-    <option value="INVERSOR EPEVER 3000W 24V">
-    <option value="CARREGADOR USINA 12V 90A">
-    <option value="GERÊNCIADOR DE BATERIAS VICTRON ORION 12/12 30A">
-    <option value="CONTROLADOR MPPT VICTRON">
-    <option value="INVERSOR MULTIPLUS 12V 2000VA">
-  </datalist>
-
+  <datalist id="listaMateriais"></datalist>
   <label for="tipo">Tipo:</label>
   <select id="tipo" onchange="mostrarResponsavel()">
     <option value="entrada">Entrada</option>
     <option value="saida">Saída</option>
   </select>
-
   <label for="quantidade">Quantidade:</label>
   <input type="number" id="quantidade" min="1" placeholder="Digite a quantidade" />
-
   <label id="labelEntrada" for="responsavelEntrada">Responsável pela Entrada:</label>
   <input type="text" id="responsavelEntrada" placeholder="Digite o nome de quem recebeu" />
-
   <label id="labelSaida" for="responsavelSaida" style="display:none;">Responsável pela Saída:</label>
   <input type="text" id="responsavelSaida" placeholder="Digite o nome de quem retirou" style="display:none;" />
-
   <label for="minimo">Estoque Mínimo Desejado:</label>
   <input type="number" id="minimo" min="0" placeholder="Ex: 50 (opcional)" />
-
   <button onclick="registrar()">Registrar</button>
   <button onclick="gerarRelatorio()">Gerar Relatório</button>
-
   <div id="alertaReposicao"></div>
-
   <h3>Saldo Atual por Material</h3>
   <table id="tabelaSaldo">
     <thead>
@@ -146,7 +115,6 @@
     </thead>
     <tbody></tbody>
   </table>
-
   <h3>Histórico de Movimentações</h3>
   <table id="tabelaHistorico">
     <thead>
@@ -161,7 +129,6 @@
     </thead>
     <tbody></tbody>
   </table>
-
   <div id="overlay"></div>
   <div id="relatorioModal">
     <h3>Relatório de Movimentações</h3>
@@ -171,18 +138,31 @@
     <button onclick="baixarPDF()">Baixar PDF</button>
     <button onclick="fecharRelatorio()">Fechar</button>
   </div>
-
   <script>
-    const unidadesPadrao = {
+    const materiaisUnidades = {
       "TRILHO DIN P/DISJUNTORES": "m",
       "CABO FLEXIVEL 2,5 MM AZUL": "m",
       "FUSÍVEL AUTOMOTIVO DE 10A": "un",
-      "PLACA SOLAR 410W": "un",
+      "PLACA SOLAR 410W": "un"
     };
-  </script>
 
-  <!-- restante do JavaScript igual ao seu código original, ajustando para pegar unidade com unidadesPadrao[material] || 'un' -->
-  <!-- Se quiser, posso incluir toda a parte JS finalizado com as melhorias -->
+    const datalist = document.getElementById("listaMateriais");
+    Object.keys(materiaisUnidades).forEach(material => {
+      const opt = document.createElement("option");
+      opt.value = material;
+      datalist.appendChild(opt);
+    });
+
+    function mostrarResponsavel() {
+      const tipo = document.getElementById('tipo').value;
+      document.getElementById('labelEntrada').style.display = tipo === 'entrada' ? 'block' : 'none';
+      document.getElementById('responsavelEntrada').style.display = tipo === 'entrada' ? 'block' : 'none';
+      document.getElementById('labelSaida').style.display = tipo === 'saida' ? 'block' : 'none';
+      document.getElementById('responsavelSaida').style.display = tipo === 'saida' ? 'block' : 'none';
+    }
+
+    // restante do JS (registrar, gerarRelatorio etc.) deve ser atualizado para pegar unidade com base em materiaisUnidades[material] || 'un'
+  </script>
 </body>
 </html>
 
